@@ -1,0 +1,51 @@
+ <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Project1: Dynamic Bar</title>
+  
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	
+
+</head>
+<body>
+
+	
+<script>
+	var data = [10];
+	var width = 500;
+	var height = 500;
+
+
+	var canvas=	d3.select('body')
+				.append('svg')
+				.attr("width",width)
+				.attr('height',height);
+	
+	//we dont see this circle bcoz selectAll selects all circle
+	//
+	var circle = canvas.append('circle')
+					.attr('cx',50)
+					.attr('cy',250)
+					.attr('r',25);
+
+	var circle2 = canvas.append('circle')
+					.attr('cx',50)
+					.attr('cy',350)
+					.attr('r',25);
+			
+	//we have 1 dom ele circle and two data ele
+	//enter() will give 2nd ele the dom ele maganta
+	//we will differentiate by color
+	//exit() will give ele for selectAll method orange color
+	var circles = canvas.selectAll('circle')
+					.data(data)
+					.attr('fill','violet')
+					.exit()
+					.attr('fill','green')
+	
+</script>
+
+</body>
+
+</html>
