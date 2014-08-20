@@ -1,0 +1,48 @@
+ <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Project1: Dynamic Bar</title>
+  
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	
+
+</head>
+<body>
+
+	
+<script>
+	//replaces the p element with the text passed in text function
+	//d3.select("p").text("Hello Shrutika");
+
+	//if p is not present the code can be written as
+	var canvas=	d3.select('body')
+				.append('svg')
+				.attr("width",500)
+				.attr('height',500);
+
+	//create circle
+	var circle = canvas.append('circle')
+				 .attr('cx',250)
+				 .attr('cy',250)
+				 .attr('r',50)
+				 .attr('fill','green');
+
+	var rect = canvas.append('rect')
+				.attr('width',100)
+				.attr('height',50)
+				.style('fill','blue');
+
+	var line = canvas.append('line')
+				.attr('x1',0)
+				.attr('y1',100)
+				.attr('x2',400)
+				.attr('y2',400)
+				.attr('stroke','#ccc')
+				.attr('stroke-width',5);
+
+</script>
+
+</body>
+
+</html>

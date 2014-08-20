@@ -1,0 +1,72 @@
+ <!DOCTYPE html>
+
+<html>
+<head>
+    <title>Project1: Dynamic Bar</title>
+  
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	
+
+</head>
+<body>
+
+	
+<script>
+	var data = [20,40,50,60];
+	var width = 500;
+	var height = 500;
+
+	var canvas=	d3.select('body')
+				.append('svg')
+				.attr("width",width)
+				.attr('height',height);
+
+	//create bar chart elements
+	//scales are something like objects and func at same time
+	//we treat them as func and use their functionality
+	//but return add method which can be used to alter their behaviour
+
+	//set basic scale
+	//linear() values of calculated scale is the result of linear
+	//function 
+
+	//domain method lets scale know where to fetch data
+	//first value is min val generally 0
+	//second value is max the highest in range
+	//next append range method in which we define what ersulting range should be
+	//eg max value shud not exceed widht of container
+	var widthScale = d3.scale.linear()
+					 .domain([0,60])
+					 .range([0,width]);
+
+	var color = d3.scale.linear()
+				.domain([0,60])
+				.range(["blue","pink"])
+	
+	var bars = canvas.selectAll("rect")
+				.data(data)
+				.enter()
+				.append('rect')
+				.attr('width',function(d){
+
+					//instead of returning the width directly
+					//like done below
+					//return d*10;
+					//we use scale methode 
+					return widthScale(d);
+				})
+				.attr('height',50)
+				.attr('y',function(d,i){
+					//this will help not overlap
+					console.log(i);
+					return i*100;
+				})
+				.attr('fill',function(d){
+					//anonymus function to give bar diff colors
+					return color(d);
+				});
+</script>
+
+</body>
+
+</html>
