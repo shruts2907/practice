@@ -1,0 +1,52 @@
+ <!DOCTYPE html>
+
+<html>
+<head>
+    <title>D3 tut</title>
+  
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	
+
+</head>
+<body>
+
+	
+<script>
+	var data = [
+				 {x:10, y:20},
+				 {x: 40,y:60},
+				 {x:50,y:70}
+			   ];
+	var width = 500;
+	var height = 500;
+
+
+	var canvas=	d3.select('body')
+				.append('svg')
+				.attr("width",width)
+				.attr('height',height)
+				
+				
+	
+	var group = canvas.append('g')
+				.attr('transform','translate(100,100)');
+
+	//set radius
+	var r=100;
+	var p= Math.PI*2;
+	//for donut we need 4 methods inner outer radius start end angle
+	//angle are not measured in degree but radians
+	var arc = d3.svg.arc()
+			  .innerRadius(r-20)
+			  .outerRadius(r)
+			  .startAngle(0)
+			  .endAngle(p-1);
+	
+	group.append('path')
+		.attr('d',arc);
+	
+</script>
+
+</body>
+
+</html>
