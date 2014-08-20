@@ -10,10 +10,13 @@
 </head>
 <body>
 
-	<p>This is a paragraph</p>
+
 <script>
 	//replaces the p element with the text passed in text function
-	d3.select("p").text("Hello Shrutika");
+	//d3.select("p").text("Hello Shrutika");
+
+	//if p is not present the code can be written as
+	d3.select('body').append('p').text("hello shrutika");
 
 </script>
 
