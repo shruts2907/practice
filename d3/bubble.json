@@ -1,0 +1,14 @@
+{
+	"name":"Max",
+	"value":100,
+	"children":[
+		{"name":"Max1","value":100},
+		{"name":"Max2","value":120},
+		{"name":"Max3","value":50},
+		{"name":"Max4","value":78},
+		{"name":"Max5","value":24},
+		{"name":"Max6","value":210},
+		{"name":"Max7","value":140},
+		{"name":"Max8","value":90}
+	]
+}
