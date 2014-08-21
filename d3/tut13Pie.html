@@ -1,0 +1,87 @@
+ <!DOCTYPE html>
+
+<html>
+<head>
+    <title>D3 tut</title>
+  
+    <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+	
+
+</head>
+<body>
+
+	
+<script>
+	var data = [10,50,80];
+	var width = 1500;
+	var height = 1500;
+
+	//ordinal type scale means input is not quantitative
+	//it can consist of a number of name
+	//it does not have continuous domain
+	//hence we are not using domain
+
+	var color = d3.scale.ordinal()
+				//.domain([0,80])
+				.range(["orange","blue","pink"]);
+
+
+	var canvas=	d3.select('body')
+				.append('svg')
+				.attr("width",width)
+				.attr('height',height)
+				
+				
+	
+	var group = canvas.append('g')
+				.attr('transform','translate(300,300)');
+
+	//set radius
+	var r=300;
+	var p= Math.PI*2;
+	//for donut we need 4 methods inner outer radius start end angle
+	//angle are not measured in degree but radians
+	//to set as pie chart inner radius to 0
+	var arc = d3.svg.arc()
+			  .innerRadius(r-100)
+			  .outerRadius(r);
+			  //start angle and end angle will be given by layout
+			  //.startAngle(0)
+			  //.endAngle(p);
+	
+	
+
+	//each layout take set of data recalculate and return different 
+	//pie layout takes data and for each data ele it returns objs
+	//start angle end angle and value property
+	var pie = d3.layout.pie()
+			  .value(function(d){
+			  	return d;
+			  });
+
+	var arcs = group.selectAll('.arc')
+			.data(pie(data))
+			.enter()
+			.append('g')
+			.attr('class','arc');
+	arcs.append('path')
+		.attr('d',arc)
+		.attr('fill',function(d){
+			return color(d.data);
+		});
+
+	//appending text
+	arcs.append('text')
+		.attr('transform',function(d){
+			return 'translate('+arc.centroid(d)+')';
+		})
+		.attr('text-anchor','middle')
+		.attr('font-size','1.5em')
+		.text(function(d){
+			return d.data;
+		})
+</script>
+
+</body>
+
+</html>
